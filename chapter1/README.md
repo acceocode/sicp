@@ -86,3 +86,54 @@
           ((and (>= a b) (>= c b)) (sum-of-squares a c))
           (else (sum-of-squares b c))))
 ```
+
+<br>
+
+#### Exercise 1.4
+```Scheme
+; if b > 0 a + b else a - b
+```
+
+<br>
+
+#### Exercise 1.5
+
+```Scheme
+(define (p) (p))
+
+(define (test x y) 
+  (if (= x 0) 
+      0 
+      y))
+
+(test 0 (p)) 
+#|
+applicative-order evaluation,
+the operator and operands are evaluated first on each step,
+and the resulting procedure is applied to resulting arguments.
+in other words, the subexpressions are evaluated first and then the operator is applied. 
+
+(p) is a self-calling recursive procedure and so the evlauted result of (p) is (p).
+thus, the operand evalutation is never resolved looping (test 0 (p)) infinitely.
+
+|#
+> infinite recursion
+
+(test 0 (p)) 
+#| 
+normal-order evaluation
+
+for normal-order evaluation, 
+operands are not evaluated until their values are needed.
+therefore, operand expressions would be replaced with parameters until they reach this state
+
+(if (= 0 0)
+    0
+    (p)
+)
+
+because the predicate is evaluated as true, the result would be 0 
+|#
+
+> 0
+```
